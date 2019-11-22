@@ -10,8 +10,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/iconfont.css'
 import './assets/css/style.css'
 import topNav from "./components/nav/topNav"
+import axios from 'axios'
 
-Vue.config.productionTip = false
+
+
+//然后再修改原型链
+
+Vue.prototype.$axios = axios
 Vue.use(ElementUI)
 Vue.component('footer-copyright', {
   template: '<p class="footer-msg">©CopyRight 2019-2019 新年快乐科技发展有限公司 版权所有 <a href="http://summerstudy.top/blog" target="_blank">桂ICP备6666666号</a></p>'

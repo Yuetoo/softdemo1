@@ -16,6 +16,10 @@ import enterpriseList from "../view/enterprise/index"
 import enterpriseAdd from '../view/enterprise/add.vue'
 import enterpriseDetail from '../view/enterprise/detail.vue'
 import enterpriseValidate from '../view/enterprise/validate.vue'
+import uploaddemo from "../components/demo/uploaddemo";
+import updemo from "../components/demo/updemo";
+import test1 from "../view/demo/test1";
+
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
 
@@ -119,7 +123,27 @@ let router =  new Router({
       path:'/test',
       name:'test',
       component:test,
+    }, {
+      path:'/test1',
+      name:'test1',
+      component:test1,
     },
+    {
+      path:'/upload',
+      name:'upload',
+      component:upload,
+    },
+    {
+      path:'/uploaddemo',
+      name:'uploaddemo',
+      component:uploaddemo,
+    },
+    {
+      path:'/updemo',
+      name:'updemo',
+      component:updemo,
+    },
+
   ]
 });
 //对每次访问之前都要先看是否已经登录

@@ -49,13 +49,14 @@ ul {
   top: 0px;
   bottom: 0px;
   width: 100%;
+  background-color: #E6A23C;
 }
 
 /* top navbar style start */
 .container .topbar-wrap {
   height: 50px;
   line-height: 50px;
-  background: #373d41;
+  background: #E6A23C;
   padding: 0px;
 }
 
@@ -86,6 +87,7 @@ ul {
   float: left;
   text-align: left;
   padding-left: 10px;
+  background-color: #E6A23C;
 }
 
 .topbar-title .el-menu--horizontal {
@@ -116,6 +118,7 @@ ul {
 .container .topbar-wrap .topbar-account {
   float: right;
   padding-right: 12px;
+  background-color: #E6A23C;
 }
 
 .container .topbar-wrap .topbar-timer {
