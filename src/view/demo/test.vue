@@ -2,23 +2,23 @@
 
 
 <div>
-  <el-form ref="Form" :model="formdata" :rules="rules" label-position="left" label-width="0px"
-           class="demo-ruleForm login-container">
-    <el-form-item prop="username" >
-      <el-input
-       :validate-event=true
-        style="width: 300px"
-        type="password"
-        maxlength="10"
-        auto-complete="off"
-        placeholder="用户名"
-        show-word-limit
-        v-model="formdata.username"
-      >
-      </el-input>
-    </el-form-item>
-    <el-button style="margin-top: 50px;" @click="next" :disabled="allow">下一步</el-button>
-  </el-form>
+  <div class="block">
+    <span class="demonstration">默认 Hover 指示器触发</span>
+    <el-carousel height="150px">
+      <el-carousel-item v-for="item in 4" :key="item">
+        <h3 class="small">{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+  <div class="block">
+    <span class="demonstration">Click 指示器触发</span>
+    <el-carousel trigger="click" height="150px">
+      <el-carousel-item v-for="item in 4" :key="item">
+        <h3 class="small">{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+
 
 </div>
 </template>

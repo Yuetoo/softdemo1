@@ -26,7 +26,7 @@
         >
         </el-input>
       </el-form-item>
-        <el-button style="margin-top: 50px;" @click="next" :disabled="allow">下一步</el-button>
+        <el-button style="margin-top: 50px;" @click="validateusername(this.user.name)" :disabled="allow">下一步</el-button>
       </div>
       <div class="info" v-show="active===2">
         <h3 class="title">欢迎注册</h3>
@@ -98,7 +98,6 @@
         data() {
             let validateAccount = (rules, value, callback) => {
                 let errors = [];
-                this.validateusername(this.user.name)
                 if (value==''){
                     callback('不能为空');
                     this.validateun();
@@ -298,8 +297,15 @@
             },
             validateusername(v){
                 let form1=new FormData();
-                form1.append("username",6666)
-                this.$axios.post('http://x238742m66.wicp.vip/getUser',form1)
+                form1.append("username",v)
+                this.$axios.post('http://x238742m66.wicp.vip/Admin/getUsers',form1).then(function (res) {
+                    if (666) {
+
+                    }
+                }).catch(function (erro){
+                    this.next()
+                })
+
             },
             register(formdata){
                 let form =new FormData();
