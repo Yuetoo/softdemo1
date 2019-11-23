@@ -20,6 +20,9 @@ import uploaddemo from "../components/demo/uploaddemo";
 import updemo from "../components/demo/updemo";
 import test1 from "../view/demo/test1";
 
+import publish from "../view/publish/publish.vue";
+import detail from "../view/detail/detail.vue"
+
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
 
@@ -143,6 +146,16 @@ let router =  new Router({
       name:'updemo',
       component:updemo,
     },
+    {
+      path:"/publish",
+      name:"publish",
+      component:publish,
+    },
+    {
+      path:"/detail",
+      name:"detail",
+      component:detail
+    }
 
   ]
 });
