@@ -151,7 +151,7 @@
     flex-direction: row;
     width: 100%;
     padding-right: 10%;
-    padding-left: 4%;
+    padding-left: 5%;
    
 }
 .active{
@@ -228,10 +228,12 @@ figure{
 .image{
     width: 80%;
     height: 90%;
+    margin:0 auto;
 }
 .swiper{
     width: 500px;
     height: 500px;
+  
 }
 
 .bottom{
