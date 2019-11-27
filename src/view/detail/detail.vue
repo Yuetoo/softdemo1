@@ -17,10 +17,10 @@
   <div class="seller">
      <el-image
       style="width: 30px; height: 30px;margin:5px;"
-      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574591774230&di=06feaad44096d0410cac32027a78ef4c&imgtype=0&src=http%3A%2F%2Fpic32.nipic.com%2F20130828%2F10013647_110750429165_2.jpg"
+      :src=sellerAvatar
       :fit="fit"></el-image>
       <div class="per-box">
-        <span>江小白</span>
+        <span>{{sellerName}}</span>
         <a href="#">卖家信息</a>
       </div>
       <div class="divider"></div>
@@ -56,13 +56,13 @@
         <div class="swiper-button-next" slot="button-next"></div>
       </swiper>
       <figure>
-          <p class="title">2019新款十字貂膝进口水貂皮草外套</p>
-          <div style="margin-top:10px;font-size:16px;letter-spacing:2px">转卖价：<span style="color:gray;font-size:30px;">￥</span><span class="active" >200</span></div>
+          <p class="title">{{title}}</p>
+          <div style="margin-top:10px;font-size:16px;letter-spacing:2px">转卖价：<span style="color:gray;font-size:30px;">￥</span><span class="active" >{{onSale}}</span></div>
            <el-divider></el-divider> 
           <div class="text">
-             <p>入手价：<span style="text-decoration: line-through;">1000</span>元</p>
-              <p>运费：20元</p>
-              <p>校区：桂林电子科技大学花江校区</p>
+             <p>入手价：<span style="text-decoration: line-through;">{{original}}</span>元</p>
+              <p>运费：{{freight}}元</p>
+              <p>校区：{{area}}</p>
           </div>
     <el-button type="danger" style="width:100px;"><i class="el-icon-shopping-cart-2"></i>想要</el-button>
           
@@ -75,34 +75,24 @@
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="display-box">
     <el-tab-pane label="宝贝介绍" name="first">
       <el-card class="box-card" style="text-align:start;text-indent:2em;height:300px;">
-      Nars蜜粉饼 粉饼是全新未使用过的~结婚买来做伴手礼的，怕送礼的时候不够 所以买出了几个，送自己和送闺蜜肯定都是保真的。日期还很新鲜， 超喜欢的~购入凭证都在的，也支持专柜验货 有需要的小姐姐来私聊我 （不墨迹的小姐姐送粉扑）没用过没损坏，
+     {{discribe}}
       </el-card>
     </el-tab-pane>
     <el-tab-pane label="留言" name="second">
       <ul style="height:300px;">
-        <li>
+        <li v-for="(item,index) in remark" :key="index">
            <el-image
       style="float:left;width: 50px; height: 50px;margin-right:20px;"
-      src="http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg"
+      :src="item.avatar"
       :fit="fit"></el-image>
       <div style="text-align:start;">
-          <p style="font-size:14px;color:gray;margin-bottom:10px;">王小波</p>
-          <p style="font-size:14px;">这个买家好棒超级棒！！！<span style="float:right;color:grey;">2018-03-10</span></p>
+          <p style="font-size:14px;color:gray;margin-bottom:10px;">{{item.name}}</p>
+          <p style="font-size:14px;">{{item.content}}<span style="float:right;color:grey;">{{item.date}}</span></p>
       </div>
           <el-divider></el-divider> 
         </li>
 
-        <li>
-           <el-image
-      style="float:left;width: 50px; height: 50px;margin-right:20px;"
-      src="http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg"
-      :fit="fit"></el-image>
-      <div style="text-align:start;">
-          <p style="font-size:14px;color:gray;margin-bottom:10px;">王小波</p>
-          <p style="font-size:14px;">这个买家好棒超级棒！！！<span style="float:right;color:grey;">2018-03-10</span></p>
-      </div>
-          <el-divider></el-divider> 
-        </li>
+       
 
        
       </ul>
@@ -120,6 +110,7 @@
   export default {
     data() {
       return {
+         activeName: 'first',
           banner:[{
               image_url:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574418179631&di=a9f07ec453f9331acca812820b541ffd&imgtype=0&src=http%3A%2F%2Fimg.mp.sohu.com%2Fupload%2F20170812%2F2f427f9a59f14adda499ffb51afc21ba_th.png",
           },{
@@ -127,10 +118,35 @@
           },{
               image_url:"http://img.11665.com/img3_p3/i2/2209834167/TB2QHk5bKQkyKJjy0FoXXcxwpXa_%21%212209834167.jpg"
           }],
-           tableData: [{
-            freight:20,
-            area: '桂林电子科技大学花江校区',
-          } ],
+          //seller
+          sellerAvatar:"http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg",
+          sellerName:"江小白",
+          title:"2019新款十字貂膝进口水貂皮草外套",
+          onSale:200,
+          original:1000,
+          freight:20,
+          area:"桂林电子科技大学花江校区",
+          discribe:" Nars蜜粉饼 粉饼是全新未使用过的~结婚买来做伴手礼的，怕送礼的时候不够 所以买出了几个，送自己和送闺蜜肯定都是保真的。日期还很新鲜， 超喜欢的~购入凭证都在的，也支持专柜验货 有需要的小姐姐来私聊我 （不墨迹的小姐姐送粉扑）没用过没损坏，",
+          remark:[{
+            avatar:"http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg",
+            name:"小宏",
+            content:"这个卖家超级棒！！！！",
+            date:"2019-12-10"
+          },
+          {
+            avatar:"http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg",
+            name:"小宏",
+            content:"这个卖家超级棒！！！！",
+            date:"2019-12-10"
+          },
+          {
+            avatar:"http://b-ssl.duitang.com/uploads/item/201710/13/20171013221109_j5e8K.thumb.700_0.jpeg",
+            name:"小宏",
+            content:"这个卖家超级棒！！！！",
+            date:"2019-12-10"
+          }],
+
+
         swiperOption: {
           pagination: {
             el: '.swiper-pagination',
