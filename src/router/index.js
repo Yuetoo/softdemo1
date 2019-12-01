@@ -23,6 +23,7 @@ import test1 from "../view/demo/test1";
 import publish from "../view/publish/publish.vue";
 import detail from "../view/detail/detail.vue"
 import sold from "../view/personal-info/sold.vue" 
+import order from "../view/order/order.vue"
 
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
@@ -161,6 +162,11 @@ let router =  new Router({
       path:"/sold",
       name:"sold",
       component:sold
+    },
+    {
+      path:"/order",
+      name:"order",
+      component:order
     }
 
   ]
