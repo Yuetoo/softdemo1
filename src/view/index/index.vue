@@ -10,11 +10,11 @@
       :trigger-on-focus="false"
       @select="handleSelect"
     ></el-autocomplete>
-      <el-button slot="append" icon="el-icon-search"></el-button>
+      <el-button slot="append" icon="el-icon-search" @click="jump"></el-button>
   </div>
   <el-menu style="margin-top:20px;margin-left:300px;width: 1300px" class="el-menu-demo" mode="horizontal"
            background-color="#E6A23C"
-           active-text-color="#E6A23C"
+           active-text-color="white"
            text-color="#fff"
            @select="handleSelect">
     <el-submenu   index="1">
@@ -29,9 +29,7 @@
         <el-menu-item index="1-4-3">选项3</el-menu-item>
       </el-submenu>
     </el-submenu>
-    <el-menu-item index="2">商品分类</el-menu-item>
-    <el-menu-item index="3" >消息中心</el-menu-item>
-    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+    <el-menu-item index="2">活动中心</el-menu-item>
   </el-menu>
   <div class="line"></div>
   <div class="block">
@@ -69,6 +67,7 @@
 </template>
 <script>
     import echarts from 'echarts'
+    import router from "../../router";
     export default {
         name: 'index',
         data() {
@@ -228,7 +227,7 @@
                 })
             },
             Buyclick(id){
-                console.log('当前被点击的id=' + id);
+                router.replace({path:'/detail'})
             },
             load() {
                 this.count += 2
@@ -304,7 +303,10 @@
             },
             handleSelect(item) {
                 console.log(item);
-            }
+            },
+            jump(){
+                router.replace({path:'/search'})
+            },
         },
         mounted() {
             this.restaurants = this.loadAll();

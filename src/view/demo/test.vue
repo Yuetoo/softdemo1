@@ -43,8 +43,12 @@
             }
 
         },
-        mounted(){
+        created(){
             this.getDatas();
+        },
+        mounted(){
+
+
         },
         methods: {
 

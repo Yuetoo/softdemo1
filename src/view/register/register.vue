@@ -82,7 +82,7 @@
       </div>
       <div class="info" v-if="active==4"  >
         <h3 class="title">完成注册</h3>
-        <router-link :to="{path: '/login'}">  <el-button style="margin-top: 12px;"  @click="register(user)" >完成注册</el-button></router-link>
+        <router-link :to="{path: '/login'}"><el-button style="margin-top: 12px;"  @click="register(user)" >完成注册</el-button></router-link>
       </div>
     </el-form>
     </div>

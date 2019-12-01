@@ -26,17 +26,78 @@
       <el-checkbox label="新品"></el-checkbox>
     </el-checkbox-group>
   </div>
-
+  <el-form  style="margin-left: 200px;width: 1600px">
+    <el-row >
+      <el-col :span="4.5" v-for="(item,o, index) in pageLists" :key="index" >
+        <el-card :body-style="{ padding: '10px' }" style="width: 300px"  shadow="hover">
+          <img  v-bind:src="item.picture" class="image"  style="width: 300px;height: 200px">
+          <div style="padding: 14px;">
+            <span  style="color: black" v-text="item.title"></span>
+            <div> <h1  style="color: red;margin-right:300px;" >￥{{ item.sellingPrice }}</h1></div>
+            <div class="bottom clearfix">
+              <div class="block" style="float: left "><el-avatar :size="40" :src="item.headPortrait"></el-avatar></div>
+              <div style="float: right">
+                <el-button type="text" class="button"  @click="Buyclick(item.id)">查看详情</el-button>
+              </div>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </el-form>
+  <el-pagination
+    style="margin-bottom: 50px"
+    layout="prev, pager, next, sizes, total, jumper"
+    :page-sizes="pagesize"
+    :page-size="pagesize"
+    :total="imglist.length"
+    @current-change="handleCurrentChange"
+  >
+  </el-pagination>
 </div>
 </template>
 
 <script>
+    import router from "../../router";
+
     export default {
         name: "search",
         data() {
             return {
+                pagesize: 3,
+                currpage: 1,
+                imglist: [],
+                pageLists:[],
                 checkList: ['选中且禁用', '复选框 A']
             };
+        },
+        mounted(){
+            this.getDatas();
+
+        },
+        methods: {
+            handleClick() {
+                console.log('click')
+            },
+            getDatas() {
+                let _this = this;
+                this.$axios.get('http://x238742m66.wicp.vip/index').then((res) => {
+                    _this.imglist = res.data;
+                    console.log(_this.imglist)
+                }).catch((err) => {
+                    console.log(err)
+                })
+                _this.initPageLists()
+            },
+            handleCurrentChange(val) {
+                this.pageLists = this.imglist.slice((val-1)*6,val*6)
+            },
+            initPageLists(){
+                this.pageLists = this.imglist.slice((val-1)*6,val*6)
+            },
+            Buyclick(id){
+                router.replace({path:'/detail'})
+            },
         }
     }
 </script>

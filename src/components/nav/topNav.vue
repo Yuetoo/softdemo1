@@ -4,7 +4,7 @@
     <el-col :span="24" class="topbar-wrap">
 
       <div class="topbar-title">
-        <a href="/" style="color: #fff;"><span v-show="!$store.state.collapsed">首页</span></a>
+        <a href="/" style="color: #fff;"/>
       </div>
       <div class="topbar-title">
         <!-- 注意：这里就是topNavState作用之处，根据当前路由所在根路由的type值判断显示不同顶部导航菜单 -->
@@ -14,13 +14,12 @@
               <el-menu-item index="/index" route="/index">首页</el-menu-item>
               <el-menu-item index="/enterpriseManager">校区选择</el-menu-item>
               <el-menu-item index="/publish">发布闲置</el-menu-item>
-              <el-menu-item index="/">订单管理</el-menu-item>
-              <el-menu-item index="/">我还没想好</el-menu-item>
+              <el-menu-item index="">订单管理</el-menu-item>
             </el-menu>
           </el-col>
         </el-row>
         <el-row v-show="$store.state.topNavState==='enterprise'">
-          <el-col :span="24">
+          <el-col :span="24">.
             <el-menu :default-active="defaultActiveIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
               <el-menu-item index="/index" route="/index">首页</el-menu-item>
               <el-menu-item index="/enterpriseManager">校区选择</el-menu-item>

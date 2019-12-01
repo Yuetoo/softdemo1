@@ -30,17 +30,14 @@
     </div>
 
     <section class="outline">
-      <!-- swiper -->
-      <swiper :options="swiperOption" class="swiper">
-        <swiper-slide v-for="(item,index) in banner" :key="index">
-          <a :href="item.image_url" target="_blank">
-            <img :src="item.image_url" class="image"/>
-          </a>
-        </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </swiper>
+      <div class="swiper">
+        <el-carousel :interval="5000" arrow="always" style="margin-left:100px;width:700px;height:700px">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3>{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+
       <figure>
         <p class="title">{{this.goodDetail.title}}</p>
         <div style="margin-top:10px;font-size:16px;letter-spacing:2px">转卖价：<span style="color:gray;font-size:30px;">￥</span><span class="active" >{{this.goodDetail.sellPrice}}</span></div>
@@ -211,7 +208,7 @@
     margin:0 auto;
   }
   .swiper{
-    width: 500px;
+    width: 1000px;
     height: 500px;
 
   }
@@ -239,5 +236,20 @@
     padding: 0px;
     margin:0px;
     margin-top: 50px;
+  }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
   }
 </style>

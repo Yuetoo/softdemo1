@@ -174,7 +174,7 @@ let router =  new Router({
     },
     {
       path: '/enterpriseManager',
-      type: 'enterprise',
+      type: 'home',
       name: 'enterprise',
       component: home,
       redirect: '/enterprise/list',
