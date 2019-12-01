@@ -10,6 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+
+
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -43,6 +46,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     watchOptions: {
       poll: config.dev.poll,
     }
+
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -67,7 +71,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
+//这里是json-server配置信息
+const jsonServer = require('json-server')
+const apiServer = jsonServer.create()
+const apiRouter = jsonServer.router('data.json') //数据关联server，db.json与index.html同级
+const middlewares = jsonServer.defaults()
 
+
+apiServer.use(middlewares)
+apiServer.use('/api',apiRouter)
+apiServer.listen(3000, () => {                 //监听端口
+  console.log('JSON Server is running')
+})
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
   portfinder.getPort((err, port) => {
@@ -93,3 +108,5 @@ module.exports = new Promise((resolve, reject) => {
     }
   })
 })
+
+

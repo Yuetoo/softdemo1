@@ -16,7 +16,7 @@
       </section>
     </el-col>
   </el-row>
-  <div class="footer">
+  <div   class="footer">
     <footer-copyright></footer-copyright>
   </div>
   </div>

@@ -13,7 +13,7 @@
             <el-menu :default-active="defaultActiveIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
               <el-menu-item index="/index" route="/index">首页</el-menu-item>
               <el-menu-item index="/enterpriseManager">校区选择</el-menu-item>
-              <el-menu-item index="/r">发布闲置</el-menu-item>
+              <el-menu-item index="/publish">发布闲置</el-menu-item>
               <el-menu-item index="/">订单管理</el-menu-item>
               <el-menu-item index="/">我还没想好</el-menu-item>
             </el-menu>
@@ -37,10 +37,10 @@
             <i class="iconfont icon-user"></i> {{nickname}}   <i class="el-icon-caret-bottom"></i></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <div @click="jumpTo('/user/profile')"><span style="color: #555;font-size: 14px;">个人信息</span></div>
+              <div @click="jumpTo('/user/message')"><span style="color: #555;font-size: 14px;">个人信息</span></div>
             </el-dropdown-item>
             <el-dropdown-item>
-              <div @click="jumpTo('/user/changepwd')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
+              <div @click="jumpTo('/correct')"><span style="color: #555;font-size: 14px;">修改密码</span></div>
             </el-dropdown-item>
             <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>

@@ -9,7 +9,7 @@ import routerIndex from '../router/index'
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';//配置请求头
+//axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';//配置请求头
 
 //添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
@@ -21,6 +21,17 @@ axios.interceptors.request.use(function (config) {
 });
 
 // 添加一个响应拦截器
+axios.interceptors.request.use(
+  config => {
+    if (localStorage.getItem('Authorization')) {
+      config.headers.Authorization = localStorage.getItem('Authorization');
+    }
+
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  });
 axios.interceptors.response.use(function (response) {
   if (response.data && response.data.errcode) {
     if (parseInt(response.data.errcode) === 40001) {

@@ -51,32 +51,32 @@
                 let var_this = this;
                 let formData = new FormData;
 
-                    formData.append('image', content.file);
-                    let config = {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                    this.$axios.post('http://www.summerstudy.top/api/upload', formData, config)
-                        .then(function (response) {
-                            imgurllist.push(response.data.data.url+';');
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
+                formData.append('image', content.file);
+                let config = {
+                    'Content-Type': 'multipart/form-data'
+                }
+                this.$axios.post('http://www.summerstudy.top/api/upload', formData, config)
+                    .then(function (response) {
+                        imgurllist.push(response.data.data.url+';');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
             },
             submitAssess(){
                 this.$refs.upload.submitUpload();
             },
             submit(formljd){
-                    let form =new FormData();
-                    form.append('userName',formljd.myusername)
-                    form.append('url',imgurllist)
-                    let config = {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                    axios.post('http://x238742m66.wicp.vip/test',form,config).then((result) => {
-                        console.log(formljd.myusername,imgurllist, result);
-                    })
-                },
+                let form =new FormData();
+                form.append('userName',formljd.myusername)
+                form.append('url',imgurllist)
+                let config = {
+                    'Content-Type': 'multipart/form-data'
+                }
+                axios.post('http://x238742m66.wicp.vip/test',form,config).then((result) => {
+                    console.log(formljd.myusername,imgurllist, result);
+                })
+            },
             beforeAvatarUpload(file) {
                 const isLt2M = file.size /1024/ 1024 < 2;
 

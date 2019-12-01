@@ -1,0 +1,68 @@
+{
+  "getNewsList": [
+    {
+      "id": 1,
+      "src": "http://www.summerstudy.top/2019/11/22/5847f13730753.jpg",
+      "des":"这是第一个描述",
+      "price":198
+
+    }, {
+      "id": 2,
+      "src": "http://www.summerstudy.top/2019/11/22/0d70a771edc74.jpg",
+      "des":"这是第二个描述",
+      "price":198
+    },
+    {
+      "id": 3,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },  {
+      "id": 4,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },  {
+      "id": 5,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 6,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 7,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 8,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 9,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 10,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":211
+    },
+    {
+      "id": 11,
+      "src": "http://www.summerstudy.top/2019/11/22/b3e6e60133aa8.jpg",
+      "des":"这是第三个描述",
+      "price":221
+    }
+  ]
+}

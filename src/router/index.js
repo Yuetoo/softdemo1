@@ -19,6 +19,16 @@ import enterpriseValidate from '../view/enterprise/validate.vue'
 import uploaddemo from "../components/demo/uploaddemo";
 import updemo from "../components/demo/updemo";
 import test1 from "../view/demo/test1";
+import correct from "../view/correct/correct"
+import user  from "../view/user/user";
+import search from "../view/search/search";
+import detail from "../view/detail/detail";
+import message from "../view/user/message";
+import publish from "../view/publish/publish";
+import userNav from "../components/nav/userNav";
+import bought from "../view/user/bought";
+import forget from "../view/forget/forget";
+
 
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
@@ -47,6 +57,113 @@ let router =  new Router({
           name: '首页',
           components: {
             default: index,
+            top: TopNav,
+          },
+          leaf: true, // 只有一个节点
+          iconCls: 'iconfont icon-home', // 图标样式class
+          menuShow: true
+        },
+        {
+          path: '/correct',
+          name:'correct',
+          components: {
+            default:correct,
+            top: TopNav,
+          },
+          leaf: true,
+          iconCls: 'el-icon-menu',
+          menuShow:true
+        },
+      ]
+    },
+    {
+      path:'/user',
+      type: 'home',
+      name :'user',
+      redirect: '/user/userindex',
+      component: user,
+       menuShow:true,
+      children: [
+        {
+          path: '/user/message',
+          name: '用户',
+          components: {
+            default: message,
+            top: TopNav,
+            aside:userNav,
+          },
+          leaf: true, // 只有一个节点
+          iconCls: 'iconfont icon-home', // 图标样式class
+          menuShow: true
+        }, {
+          path: '/user/bought',
+          name: '用户',
+          components: {
+            default: bought,
+            top: TopNav,
+            aside:userNav,
+          },
+          leaf: true, // 只有一个节点
+          iconCls: 'iconfont icon-home', // 图标样式class
+          menuShow: true
+        },
+
+      ]
+    },
+    {
+      path:'/publish',
+      type: 'home',
+      name :'publish',
+      redirect: '/publish',
+      component: home,
+      menuShow:true,
+      children: [
+        {
+          path: '/publish',
+          name: '发布',
+          components: {
+            default: publish,
+            top: TopNav,
+          },
+          leaf: true, // 只有一个节点
+          iconCls: 'iconfont icon-home', // 图标样式class
+          menuShow: true
+        },
+      ]
+    }, {
+      path:'/detail',
+      type: 'home',
+      name :'detail',
+      redirect: '/detail',
+      component: home,
+      menuShow:true,
+      children: [
+        {
+          path: '/detail',
+          name: '发布',
+          components: {
+            default: detail,
+            top: TopNav,
+          },
+          leaf: true, // 只有一个节点
+          iconCls: 'iconfont icon-home', // 图标样式class
+          menuShow: true
+        },
+      ]
+    },
+    {
+      path:'/search',
+      type: 'home',
+      name :'search',
+      redirect: '/search',
+      component: home,
+      menuShow:true,
+      children: [
+        {
+          path: '/search',
+          name: '搜索',
+          components: {
+            default: search,
             top: TopNav,
           },
           leaf: true, // 只有一个节点
@@ -144,10 +261,34 @@ let router =  new Router({
       component:updemo,
     },
 
+    {
+      path:'/detail',
+      name:'detail',
+      component:detail,
+    },
+    {
+      path:'/forget',
+      name:'forget',
+      component:forget,
+    },
   ]
 });
-//对每次访问之前都要先看是否已经登录
 
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    let token = localStorage.getItem('Authorization');
+
+    if (token === 'null' || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
 
 
 export default router

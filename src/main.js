@@ -11,11 +11,17 @@ import './assets/iconfont.css'
 import './assets/css/style.css'
 import topNav from "./components/nav/topNav"
 import axios from 'axios'
+import VResource from 'vue-resource'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'//这里注意具体看使用的版本是否需要引入样式，以及具体位置。
+Vue.use(VueAwesomeSwiper)
 
-
+Vue.use( VResource )
 
 //然后再修改原型链
+// 添加请求拦截器，在请求头中加token
 
+axios.defaults.withCredentials=true
 Vue.prototype.$axios = axios
 Vue.use(ElementUI)
 Vue.component('footer-copyright', {

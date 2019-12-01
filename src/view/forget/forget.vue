@@ -1,102 +1,83 @@
 <template>
   <div >
-  <div  class="el-header">
-    <el-steps :active="active" finish-status="success"   align-center>
-    <el-step title="注册"></el-step>
-    <el-step title="填入用户名"></el-step>
-      <el-step title="填入密码"></el-step>
-    <el-step title="填入密保问题"></el-step>
-      <el-step  title="注册成功"></el-step>
-    </el-steps>
-  </div>
-    <div class="register-container">
-    <el-form ref="Form"   :model="user"  :rules="rules" label-position="left" label-width="0px"
-             class="demo-ruleForm register-container">
-      <div class="info" v-show="active==1">
-        <h3 class="title">欢迎注册</h3>
-      <el-form-item  prop="name">
-        <h4  class="register-title">用户名：</h4>
-        <el-input
-          type="text"
-          v-model="user.name"
-          maxlength="6"
-          auto-complete="off"
-          placeholder="用户名"
-          show-word-limit
-        >
-        </el-input>
-      </el-form-item>
-
-        <el-button style="margin-top: 50px;" @click="validateusername(user.name)" :disabled="allow">下一步</el-button>
-      </div>
-      <div class="info" v-show="active==2">
-        <h3 class="title">欢迎注册</h3>
-        <h4  class="register-title">学校选取：</h4>
-        <el-select  class="select"  v-model="schoolv" placeholder="请选择"  @change="currentop">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item">
-          </el-option>
-        </el-select>
-        <el-form-item prop="psd">
-        <h4  class="-title" >密码：</h4>
-        <el-input  type="password" v-model="user.password"
-                   auto-complete="off"
-                   laceholder="密码"
-        >
-
-        </el-input>
-        </el-form-item>
-        <el-form-item prop="spsd">
-        <h4  class="-title">请再次输入密码：</h4>
-        <el-input
-          type="password"
-          v-model="user.spassword"
-          auto-complete="off"
-          :disabled="can"
-          placeholder="确认密码"
-        >
-        </el-input>
-        </el-form-item>
-        <el-button style="margin-top: 12px;"  @click="next" :disabled="allow1">下一步</el-button>
-      </div>
-
-      <div class="info" v-show="active==3">
-        <h3 class="title">欢迎注册</h3>
-        <h4  class="register-title">密保问题选择：</h4>
-        <el-select  class="select"  v-model="qsvalue" placeholder="请选择" @change="currentop1">
-          <el-option
-            v-for="item in qsoptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item">
-          </el-option>
-        </el-select>
-        <h4  class="-title" >答案：</h4>
-        <el-form-item prop="as">
-        <el-input  type="text" v-model="user.answer"  auto-complete="off" placeholder="答案"></el-input>
-        </el-form-item>
-        <el-button style="margin-top: 12px;"  @click="next" :disabled="allow2">下一步</el-button>
-      </div>
-      <div class="info" v-if="active==4"  >
-        <h3 class="title">完成注册</h3>
-        <router-link :to="{path: '/login'}">  <el-button style="margin-top: 12px;"  @click="register(user)" >完成注册</el-button></router-link>
-      </div>
-    </el-form>
+    <div  class="el-header">
+      <el-steps :active="active" finish-status="success"   align-center>
+        <el-step title="忘记密码"></el-step>
+        <el-step title="验证用户名"></el-step>
+        <el-step title="验证密保问题"></el-step>
+        <el-step title="填入新密码"></el-step>
+        <el-step  title="修改成功"></el-step>
+      </el-steps>
     </div>
-  <div class="footer">
-    <footer-copyright></footer-copyright>
-  </div>
+    <div class="forget-container">
+      <el-form ref="Form"   :model="user"  :rules="rules" label-position="left" label-width="0px"
+               class="demo-ruleForm forget-container">
+        <div class="info" v-show="active==1">
+          <h3 class="title">修改密码</h3>
+          <el-form-item  prop="name">
+            <h4  class="forget-title">用户名：</h4>
+            <el-input
+              type="text"
+              v-model="user.name"
+              maxlength="6"
+              auto-complete="off"
+              placeholder="用户名"
+              show-word-limit
+            >
+            </el-input>
+            <el-button style="margin-top: 50px;" @click="validateusername(user.name)" :disabled="allow">下一步</el-button>
+          </el-form-item>
+        </div>
+          <div class="info" v-if="active==2">
+            <h4  class="forget-title">密保问题：</h4>
+            {{this.question}}
+            <h4  class="-title" >答案：</h4>
+            <el-form-item prop="as">
+              <el-input  type="text" v-model="user.answer"  auto-complete="off" placeholder="答案"></el-input>
+            </el-form-item>
+            <el-button style="margin-top: 12px;"  @click="cAsn" :disabled="allow2">下一步</el-button>
+          </div>
+
+        <div class="info" v-show="active==3">
+          <h3 class="title">忘记密码</h3>
+          <el-form-item prop="psd">
+            <h4  class="-title" >新密码：</h4>
+            <el-input  type="password" v-model="user.password"
+                       auto-complete="off"
+                       laceholder="密码"
+            >
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="spsd">
+            <h4  class="-title">请再次输入密码：</h4>
+            <el-input
+              type="password"
+              v-model="user.spassword"
+              auto-complete="off"
+              :disabled="can"
+              placeholder="确认密码"
+            >
+            </el-input>
+          </el-form-item>
+          <el-button style="margin-top: 12px;"  @click="next" :disabled="allow1">下一步</el-button>
+        </div>
+
+        <div class="info" v-show="active==4" >
+          <router-link :to="{path: '/login'}">  <el-button style="margin-top: 12px;"  @click="register(user)" >完成修改</el-button></router-link>
+        </div>
+      </el-form>
+    </div>
+    <div class="footer">
+      <footer-copyright></footer-copyright>
+    </div>
   </div>
 </template>
 
 <script>
-  import qs  from "qs"
-  import axios from  "axios"
+    import qs  from "qs"
+    import axios from  "axios"
     export default {
-        name:"register",
+        name:"forget",
         data() {
             let validateAccount = (rules, value, callback) => {
                 let errors = [];
@@ -105,13 +86,13 @@
                     this.validateun();
                 }
                 else {
-                        if (!/^[a-z0-9_]+$/.test(value)) {
-                            callback('请输入字母数字或下划线');
-                            this.validateun();
-                        } else {
-                            this.validateun();
-                        }
+                    if (!/^[a-z0-9_]+$/.test(value)) {
+                        callback('请输入字母数字或下划线');
+                        this.validateun();
+                    } else {
+                        this.validateun();
                     }
+                }
 
             };
             let validatePsd = (rules, value, callback) =>{
@@ -153,12 +134,12 @@
                 }
                 else {
                     this.validatepsd();
-                        if(this.user.password!=this.user.spassword){
-                            callback('两次密码输入不同');
-                            this.validatepsd();
-                        }else{
-                            this.validatepsd();
-                        }
+                    if(this.user.password!=this.user.spassword){
+                        callback('两次密码输入不同');
+                        this.validatepsd();
+                    }else{
+                        this.validatepsd();
+                    }
                 }
             };
             let validatesAs = (rules, value, callback) => {
@@ -182,6 +163,7 @@
                 allow2:true,
                 lable:'',
                 label1:'',
+                question:'',
                 user:{
                     name:'',
                     password:'',
@@ -199,73 +181,36 @@
                         {required: true,validator:validatesPsd,trigger:'change'}
                     ],
                     as:[
-                         { required: true, validator: validatesAs, trigger: 'change' }
-            ],
+                        { required: true, validator: validatesAs, trigger: 'change' }
+                    ],
 
                 },
-                options: [{
-                    value: '选项1',
-                    label: '桂林电子科技大学'
-                }, {
-                    value: '选项2',
-                    label: '广西师范大学'
-                }, {
-                    value: '选项3',
-                    label: '桂林理工大学'
-                }, {
-                    value: '选项4',
-                    label: '桂林医学院'
-                }, {
-                    value: '选项5',
-                    label: '桂林电子科技大学信息科技学院'
-
-                },{
-                    value: '选项6',
-                    label: '广西大学'
-
-                },
-                ],
-                shoolv:'',
-                qsoptions: [{
-                    value: '选项1',
-                    label: '您母亲的姓名是？'
-                }, {
-                    value: '选项2',
-                    label: '您父亲的姓名是？'
-                }, {
-                    value: '选项3',
-                    label: '您配偶的姓名是？'
-                }, {
-                    value: '选项4',
-                    label: '您的出生地是？'
-                }, {
-                    value: '选项5',
-                    label: '您高中班主任的名字是？'
-
-                },{
-                    value: '选项6',
-                    label: '您初中班主任的名字是？'
-
-                },
-                    {
-                        value: '选项7',
-                        label: '您小学班主任的名字是？'
-
-                    },
-                    {
-                        value: '选项8',
-                        label: '您的学号（或工号）是？'
-
-                    }
-                ],
-                qsvalue:'',
                 active: 1,
             }
 
         },
 
         methods: {
+            cAsn(){
+                let that = this
+                let form1=new FormData();
+                console.log(6666)
+                form1.append("answer",this.user.answer)
+                console.log(7777)
+                axios.post('http://x238742m66.wicp.vip/checkAnswer',form1).then(function (res){
+                    console.log(res.data.msg)
+                    if (res.data.msg.match(/ok/g)){
+                        that.next();
+                    }else
+                    {
+                        that.$message.error('密保问题验证失败');
+                    }
+                }).catch(function (erro){
+                    console.log(erro)
 
+                })
+
+            },
             next() {
                 if (this.active++ >5 )
                 {
@@ -276,7 +221,7 @@
                 if (!/^[a-z0-9_]+$/.test(this.user.name)){
                     this.allow = true;
                 }
-               else {
+                else {
                     if (this.user.name.trim().length > 0) {
                         this.allow = false;
                     } else {
@@ -302,9 +247,7 @@
             },
             validateas(){
                 if(!this.user.answer==''){
-                    if(this.bj1==false){
                         this.allow2=false;
-                    }
                 }
             },
             validateusername(v){
@@ -314,7 +257,7 @@
                 this.$axios.post('http://x238742m66.wicp.vip/Admin/getUser',form1).then(function (res){
                     console.log(res.data.msg)
                     if (res.data.msg.match(/erro/g)){
-                             that.$message.error('很抱歉，该用户名已存在∑(っ°Д°;)っ');
+                        that.$message.error('很抱歉，该用户名已存在∑(っ°Д°;)っ');
                     }else
                     {
                         that.next();
@@ -382,7 +325,7 @@
     margin:  50px auto;
     width: 800px;
   }
-  .register-container {
+  .forget-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
     position: relative;
     -webkit-border-radius: 5px;
@@ -399,16 +342,16 @@
     background: -o-linear-gradient(top,#ace, #00C1DE); /*Opera 11.10+*/
 
   }
-  .register-container .title {
+  .forget-container .title {
     margin: 0px auto 40px auto;
     text-align: center;
     color: #505458;
   }
-  .register-title {
+  .forget-title {
     text-align: left;
     color: #505458;
   }
-  .register-container .remember {
+  .forget-container .remember {
     margin: 0px 0px 35px 0px;
   }
   .info{

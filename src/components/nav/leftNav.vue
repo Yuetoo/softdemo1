@@ -1,10 +1,9 @@
 <template>
   <!--左侧导航-->
-  <aside :class="{showSidebar:!collapsed}">
-    <!--展开折叠开关-->
+  <div>
+
     <div class="menu-toggle" @click.prevent="collapse">
-      <i class="iconfont icon-outdent" v-show="!collapsed" title="收起"></i>
-      <i class="iconfont icon-indent" v-show="collapsed" title="展开"></i>
+
     </div>
     <!--导航菜单-->
     <el-menu :default-active="$route.path" router :collapse="collapsed" ref="leftNavigation">
@@ -27,13 +26,14 @@
         </template>
       </template>
     </el-menu>
-  </aside>
+ </div>
 </template>
 <script>
   export default {
     name: 'leftNav',
     data () {
       return {
+          src:'http://www.summerstudy.top/2019/11/22/5847f13730753.jpg',
         loading: false,
         collapsed: this.$store.state.collapsed,
       }

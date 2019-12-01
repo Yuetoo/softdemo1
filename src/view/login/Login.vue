@@ -3,10 +3,10 @@
       <div  class="header-content"  id="bg"></div>
     <el-form ref="AccountForm" :model="account" :rules="rules" label-position="left" label-width="0px"
              class="demo-ruleForm login-container">
-      <h2 class="title">校园二手交易平台</h2>
-      <h3 class="title">欢迎登录</h3>
+      <h2 class="ltitle">校园二手交易平台</h2>
+      <h3 class="ltitle">欢迎登录</h3>
       <el-form-item prop="username">
-        <el-input type="text" v-model="account.username" auto-complete="off" placeholder="手机号或公司企业码"></el-input>
+        <el-input type="text" v-model="account.username" auto-complete="off" maxlength="6" show-word-limit placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item prop="pwd">
         <el-input type="password" v-model="account.pwd" :autofocus="pwdFocus" auto-complete="off" placeholder="请输入登录密码"></el-input>
@@ -29,26 +29,25 @@
     import API from '../../api/api_user'
     export default {
         data() {
-            var validateAccount = (rules, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请输入账号'));
+            let validateAccount = (rules, value, callback) => {
+                if (value == '') {
+                    callback(new Error('请输入账号(✪ω✪)') )
+                    this.validateCorrect();
                 } else {
-                    if (this.account.username !== '') {
-                        this.account.username = value;
+                    if (!/^[a-z0-9_]+$/.test(value)) {
+                        callback(new Error('请输入字母数字或下划线'));
                         this.validateCorrect();
                     }
-                    callback();
+                    this.validateCorrect();
                 }
             };
-            var validatePwd = (rules, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请输入密码'));
-                } else {
-                    if (this.account.pwd !== '') {
-                        this.account.pwd = value;
-                        this.validateCorrect();
-                    }
-                    callback();
+            let validatePwd = (rules, value, callback) => {
+                if (value == '') {
+                    callback(new Error('密码不能为空嗷o(´^｀)o'));
+                    this.validateCorrect();
+                }else
+                {
+                    this.validateCorrect();
                 }
             };
             return {
@@ -82,27 +81,33 @@
         methods: {
             handleLogin(){
                 let that = this;
-                let result = {
-                    id: '1',
-                    username: 'admin',
-                    nickname: this.account.username,
-                    name: 'administrator',
-                    email: '888888@163.com'
-                };
+                let result = new FormData();
+                result.append("userName",this.account.username);
+                result.append("password",this.account.pwd);
                 this.loading = true;
-                let status = API.login(result);
-                if(status == 'success'){
-                    localStorage.setItem('access-user', JSON.stringify(result));
-                    window.localStorage.removeItem('register-user');
-                    that.$router.push({path: '/'});
-                } else {
-                    this.loading = false;
-                    this.$message.error("登录失败，账号或密码错误");
-                }
+                this.$axios.post('http://x238742m66.wicp.vip/login',result).then(function (res) {
+                    if(res.data.msg==="ok"){
+                        localStorage.setItem('access-user', JSON.stringify(result));
+                        localStorage.setItem('Authorization',res.data.token);
+                        window.localStorage.removeItem('register-user');
+                        that.$router.push({path: '/'});
+                    }else {
+                        that.loading = false;
+                        that.$message.error("登录失败，账号或密码错误");
+                    }
+
+                }).catch(function (erro) {
+                     that.$message.error(erro)
+                })
             },
             validateCorrect(){
-                if(this.account.pwd.trim().length > 0 && this.account.username.trim().length > 0){
-                    this.allowLogin = false;
+                if(this.account.pwd !='' ){
+                   if(this.account.username!='') {
+                       this.allowLogin = false;
+                    }else
+                   {
+                       this.allowLogin = true;
+                   }
                 } else {
                     this.allowLogin = true;
                 }
@@ -159,7 +164,7 @@
     background: -o-linear-gradient(top,#ace, #00C1DE); /*Opera 11.10+*/
 
   }
-  .login-container .title {
+  .login-container .ltitle {
     margin: 0px auto 40px auto;
     text-align: center;
     color: #505458;
