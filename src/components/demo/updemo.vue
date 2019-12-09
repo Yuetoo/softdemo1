@@ -12,9 +12,9 @@
        >
         <i slot="trigger" class="el-icon-plus"></i>
       </el-upload>
-      <el-dialog :visible.sync="dialogVisible" >
+      <!-- <el-dialog :visible.sync="dialogVisible" >
         <img width="100%" :src="dialogImageUrl" alt="">
-      </el-dialog>
+      </el-dialog> -->
       <el-form  v-model="formljd">
         <el-form-item>
           <el-input  type="text" v-model="formljd.myusername" class="el-card" ></el-input>

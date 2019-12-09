@@ -24,6 +24,9 @@ import publish from "../view/publish/publish.vue";
 import detail from "../view/detail/detail.vue"
 import sold from "../view/personal-info/sold.vue" 
 import order from "../view/order/order.vue"
+import perfection from "../view/personal-info/perfection.vue"
+import logistics from "../view/order/logistics.vue"
+import orderDetail from "../view/order/orderDetail.vue"
 
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
@@ -167,6 +170,21 @@ let router =  new Router({
       path:"/order",
       name:"order",
       component:order
+    },
+    {
+      path:"/perfection",
+      name:"perfection",
+      component:perfection
+    },
+    {
+      path:"/logistics",
+      name:"logistics",
+      component:logistics
+    },
+    {
+      path:"/orderDetail",
+      name:"orderDetail",
+      component:orderDetail
     }
 
   ]

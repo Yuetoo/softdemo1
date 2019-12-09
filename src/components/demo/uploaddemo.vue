@@ -1,5 +1,11 @@
 <template>
 <div>
+  <el-dialog
+    title="修改头像"
+    @close="addDialogClose"
+    :visible.sync="dialogTableVisible"
+    :close-on-click-modal="false"
+  >
   <el-upload
     class="el-upload"
     :http-request='submitUpload'
@@ -41,12 +47,17 @@
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
   </el-upload>
-  <el-form  v-model="formljd">
-    <el-form-item>
-      <el-input  type="text" v-model="formljd.myusername" class="el-card"></el-input>
-    </el-form-item>
-  </el-form>
-  <el-button @click = 'submit(formljd)'>提交到服务器</el-button>
+    <p>
+      <el-button @click = 'submit(formljd)'>确定</el-button>
+      <el-button @click = ''>取消</el-button>
+    </p>
+
+  </el-dialog>
+  <p>
+    <img src="http://www.summerstudy.top/2019/12/01/deb483335dca2.jpg">
+  </p>
+
+  <el-button @click="dialogTableVisible = true">修改头像</el-button>
 </div>
 </template>
 
@@ -58,6 +69,7 @@
         name:'uploaddemo',
         data() {
             return {
+                dialogTableVisible: false,
                 formljd:{
                     myusername:'',
                 },
@@ -108,16 +120,17 @@
                 for(;imgurl!=undefined;){
                     console.log(666)
                     let form =new FormData();
-                    form.append('userName',formljd.myusername)
                     form.append('url',imgurl)
                     let config = {
                         'Content-Type': 'multipart/form-data'
                     }
-                    axios.post('http://x238742m66.wicp.vip/test',form,config).then((result) => {
+                    axios.post('http://47.103.202.20:8090/User/xxxxx',form,config).then((result) => {
                         console.log(formljd.myusername, result);
                     })
                 }
-
+            },
+            addDialogClose() {
+                this.$refs.addFormRef.resetFields() // 清空表单
             },
         }
     }
