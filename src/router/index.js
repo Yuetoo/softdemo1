@@ -27,6 +27,8 @@ import order from "../view/order/order.vue"
 import perfection from "../view/personal-info/perfection.vue"
 import logistics from "../view/order/logistics.vue"
 import orderDetail from "../view/order/orderDetail.vue"
+import sellerInfo from "../view/personal-info/sellerInfo.vue"
+import chat from "../view/chat/chat.vue"
 
 
 const loginpage = resolve => require(['../view/login/Login'],resolve)
@@ -185,6 +187,16 @@ let router =  new Router({
       path:"/orderDetail",
       name:"orderDetail",
       component:orderDetail
+    },
+    {
+      path:"/sellerInfo",
+      name:"sellerInfo",
+      component:sellerInfo
+    },
+    {
+      path:"/chat",
+      name:"chat",
+      component:chat
     }
 
   ]

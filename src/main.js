@@ -12,6 +12,11 @@ import './assets/css/style.css'
 import topNav from "./components/nav/topNav"
 import axios from 'axios'
 
+//chat
+import Mint from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(Mint)
+
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'//这里注意具体看使用的版本是否需要引入样式，以及具体位置。
 Vue.use(VueAwesomeSwiper)

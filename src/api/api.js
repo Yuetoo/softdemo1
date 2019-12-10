@@ -9,3 +9,5 @@ axios.defaults.baseURL ='http://x238742m66.wicp.vip'
 export const requestLogin = params => {return axios.post('/login',qs.stringify(params)).then(res => res.data)}
 export const userList = params => {return axios.get('/Admin/getUsers',qs.stringify(params)).then(res => res.data)}
 export const addUser = params => {return axios.get('/Admin/addUser',qs.stringify(params)).then(res => res.data)}
+
+
